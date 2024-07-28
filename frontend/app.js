@@ -5,7 +5,7 @@ document.getElementById('registrationForm').addEventListener('submit', async (ev
   const email = document.getElementById('email').value;
   const dob = document.getElementById('dob').value;
 
-  const response = await fetch('https://birthday-reminder-altschool-assignment.hostless.app/register', {
+  const response = await fetch('https://birthday-wisher.hostless.app/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -6,7 +6,14 @@ const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const path = require('path');
 const { runBirthdayCheck } = require('./cron/birthdayCron');
+const cors = require('cors');
 const app = express();
+
+app.use(cors({
+  origin: 'https://birthday-reminder-altschool-assignment.hostless.app', // Replace with your frontend's URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods you want to allow
+  credentials: true // Allow cookies to be sent with requests
+}));
 
 // Middleware
 app.use(bodyParser.json());

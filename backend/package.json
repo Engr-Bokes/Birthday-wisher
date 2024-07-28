@@ -4,9 +4,8 @@
   "description": "A simple app to send birthday wishes to company members",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "app.js"
+    "start": "node backend/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "body-parser": "^1.20.2",

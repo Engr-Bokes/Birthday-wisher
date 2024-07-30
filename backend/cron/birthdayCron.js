@@ -22,7 +22,7 @@ const sendBirthdayEmail = async (user) => {
 };
 
 const runBirthdayCheck = () => {
-  cron.schedule('0 7 * * *', async () => {
+  cron.schedule('* * * * *', async () => {
     try {
       await mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
@@ -50,7 +50,7 @@ const runBirthdayCheck = () => {
      mongoose.connection.close(); // Close connection after job
     } catch (error) {
       console.error('Error during birthday check:', error);
-      
+
     }
   });
 };

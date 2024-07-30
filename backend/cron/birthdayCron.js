@@ -24,11 +24,8 @@ const sendBirthdayEmail = async (user) => {
 const runBirthdayCheck = () => {
   cron.schedule('* * * * *', async () => {
     try {
-      await mongoose.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-
+      await mongoose.connect(process.env.MONGODB_URI);
+      
     const today = new Date();
     const month = today.getMonth();
     const date = today.getDate();

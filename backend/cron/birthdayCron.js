@@ -1,13 +1,14 @@
+require('dotenv').config();
 const cron = require('node-cron');
 const User = require('../models/userModel');
 const transporter = require('../nodemailer');
 
 const sendBirthdayEmail = async (user) => {
   const mailOptions = {
-    from: 'cbokesman@gmail.com',
+    from: 'process.env.SMTP_USER',
     to: user.email,
     subject: 'Happy Birthday!',
-    text: `Dear ${user.username},\n\nWishing you a fantastic birthday filled with joy and surprises!\n\nBest regards,\nBokesMan Group`,
+    text: `Dear ${user.username},\n\nWe acknowledge and appreciate your prescence with us, so on your remarkable day, we wish you a fantastic birthday filled with joy and surprises! \nCheers to many Happy returns!\n\nBest regards,\nBokesMan Group`,
   };
 
   try {

@@ -1,11 +1,12 @@
 require('dotenv').config();
 const cron = require('node-cron');
+const mongoose = require('mongoose');
 const User = require('../models/userModel');
 const transporter = require('../nodemailer');
 
 const sendBirthdayEmail = async (user) => {
   const mailOptions = {
-    from: 'process.env.SMTP_USER',
+    from: process.env.SMTP_USER,
     to: user.email,
     subject: 'Happy Birthday!',
     text: `Dear ${user.username},\n\nWe acknowledge and appreciate your prescence with us, so on your remarkable day, we wish you a fantastic birthday filled with joy and surprises! \nCheers to many Happy returns!\n\nBest regards,\nBokesMan Group`,
@@ -16,11 +17,18 @@ const sendBirthdayEmail = async (user) => {
     console.log(`Birthday email sent to ${user.email}`);
   } catch (error) {
     console.error(`Failed to send email: ${error}`);
+
   }
 };
 
 const runBirthdayCheck = () => {
   cron.schedule('0 7 * * *', async () => {
+    try {
+      await mongoose.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+
     const today = new Date();
     const month = today.getMonth();
     const date = today.getDate();
@@ -36,6 +44,13 @@ const runBirthdayCheck = () => {
 
     for (const user of users) {
       await sendBirthdayEmail(user);
+
+    }
+
+     mongoose.connection.close(); // Close connection after job
+    } catch (error) {
+      console.error('Error during birthday check:', error);
+      
     }
   });
 };

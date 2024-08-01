@@ -21,7 +21,7 @@ const sendBirthdayEmail = async (user) => {
 };
 
 const runBirthdayCheck = () => {
-  cron.schedule('* * * * *', async () => {
+  cron.schedule('0 7 * * *', async () => {
     const today = new Date();
     const month = today.getMonth();
     const date = today.getDate();

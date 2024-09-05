@@ -10,7 +10,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-  origin: 'https://birthday-wisher.hostless.app', // Replace with your frontend's URL
+  origin: 'https://birthday-wisher.hostless.app', // frontend's URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods you want to allow
   credentials: true // Allow cookies to be sent with requests
 }));
